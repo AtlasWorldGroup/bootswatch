@@ -18,7 +18,7 @@ npm install
 
 To build a theme, run `grunt swatch:{theme}`. In this example, we will build the Atlas theme.
 
-~~bash
+~~~bash
 grunt swatch:atlas
 ~~~
 
