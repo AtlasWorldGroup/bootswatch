@@ -1,84 +1,80 @@
 Bootswatch
 ==========
 
-[![Bootswatch Logo](./assets/img/logo-dark.png)](http://bootswatch.com)
+This is a fork of Bootswatch customized to build AtlasNet themes.
 
-Bootswatch is a collection of open source themes for [Bootstrap](http://getbootstrap.com/). Check it out at [bootswatch.com](http://bootswatch.com).
+**NOTE** Examples are written assuming you have Node installed and are using a PowerShell command line.
 
 Usage
 -----
-Download the `bootstrap.min.css` file associated with a theme and replace Bootstrap's default stylesheet. You must still include Bootstrap's JavaScript file to have functional dropdowns, modals, etc.
 
-The themes are also hosted on [BootstrapCDN](http://www.bootstrapcdn.com/bootswatch/). 
+Navigate to the root of the project and run `npm install` to install the dependencies.
 
-You can import a theme into your styles using either LESS or SASS.
+~~~bash
+npm install
+~~~
 
-LESS:
+** Node must be installed to use Node Package Manager **
 
-```
-@import "bootstrap/less/bootstrap.less";
-@import "bootswatch/theme/variables.less";
-@import "bootswatch/theme/bootswatch.less";
+To build a theme, run `grunt swatch:{theme}`. In this example, we will build the Atlas theme.
 
-```
+~~bash
+grunt swatch:atlas
+~~~
 
-SASS:
+If you need the Date/Time picker switch to the themes root and `gulp`. Again, we will use the Atlas theme as an example.
 
-```
-@import "bootswatch/theme/variables";
-@import "bootstrap-sass-official/assets/stylesheets/bootstrap";
-@import "bootswatch/theme/bootswatch";
+~~~bash
+cd atlas
+gulp
+~~~
 
-```
-
-
-Customization
-------
-Bootswatch is open source and you’re welcome to modify the themes.
-
-Each theme consists of two LESS files. `variables.less`, which is included by default in Bootstrap, allows you to customize [these settings](http://getbootstrap.com/customize/#less-variables). `bootswatch.less` introduces more extensive structural changes.
-
-These files are also available in SASS.
-
-Check out the [Help page](http://bootswatch.com/help/) for more details on building your own theme.
-
-API
+Files
 -----
 
-A simple API is available for integrating your platform with Bootswatch. More info at http://bootswatch.com/help/#api
+Once a theme has been generated using `grunt swatch:{theme}`, in that theme's root, there is a `dist` folder. In the `dist` folder you will see a subfolder named `bootstrap` (and a subfolder named `datetime` if you also used `gulp` to build the date/time picker). The tasks created the normal and the minified version of the css.
 
-Contributing
+Adding New Themes
 -----
-It's through your contributions that Bootswatch will continue to improve. You can contribute in several ways.
 
-**Issues:** Provide a detailed report of any bugs you encounter and open an issue on [GitHub](https://github.com/thomaspark/bootswatch/issues).
+To create a new theme, copy an existing theme. As an example, we will create a theme for Titan.
 
-**Documentation:** If you'd like to fix a typo or beef up the docs, you can fork the project, make your changes, and submit a pull request.
+~~~bash
+Copy-Item atlas titan -recurse
+~~~
 
-**Code:** Make a fix and submit it as a pull request. When making changes, it's important to keep the CSS, LESS and SASS versions in sync. To do this, be sure to edit the LESS source files for the particular theme, then run the  tasks `grunt swatch` and `grunt:convert_less` to build the CSS and LESS.
+Next, open the `Gruntfile.js` in the root of the project.
 
-**Donation:** Donations are gratefully accepted via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=F22JEM3Q78JC2) and [Gratipay](https://gratipay.com/bootswatch/).
+Inside of the project configuration in this file you will see `swatch:`
 
-Author
-------
-Thomas Park
+~~~bash
+...
 
-+ http://github.com/thomaspark
-+ http://thomaspark.co
+swatch: {
+  atlas:{}
+},
 
-Thanks
-------
-[Mark Otto](https://github.com/mdo) and [Jacob Thornton](https://github.com/fat) for [Bootstrap](https://github.com/twbs/bootstrap).
+...
+~~~
 
-[Jenil Gogari](http://www.jgog.in/) for his contributions to the Flatly theme.
+To enable the new theme to be built, we will add it to the swatch configuration.
 
-[James Taylor](https://github.com/jostylr) for [cors-lite](https://github.com/jostylr/cors-lite).
+~~~bash
+...
 
-[Corey Sewell](https://github.com/cjsewell) for SASS conversion.
+swatch: {
+  atlas:{}, titan{}
+},
+
+...
+~~~
+
+You can now build a theme for Titan.
 
 
 Copyright and License
 ----
+Bootswatch Copyright
 Copyright 2014 Thomas Park
 
 Code released under the MIT License.
