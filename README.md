@@ -14,7 +14,7 @@ Navigate to the root of the project and run `npm install` to install the depende
 npm install
 ~~~
 
-** Node must be installed to use Node Package Manager **
+**NOTE** Node must be installed to use Node Package Manager
 
 To build a theme, run `grunt swatch:{theme}`. In this example, we will build the Atlas theme.
 
@@ -72,9 +72,9 @@ swatch: {
 You can now build a theme for Titan.
 
 
-Copyright and License
+Bootswatch Copyright and License
 ----
-Bootswatch Copyright
+
 Copyright 2014 Thomas Park
 
 Code released under the MIT License.
