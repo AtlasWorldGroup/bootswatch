@@ -2,8 +2,7 @@
 // Bootswatch
 // -----------------------------------------------------
 
-$web-font-path: "https://fonts.googleapis.com/css?family=Ubuntu:400,700" !default;
-@import url($web-font-path);
+@import url("http://fonts.googleapis.com/css?family=Ubuntu:400,700");
 
 // Navbar =====================================================================
 
@@ -13,7 +12,7 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Ubuntu:400,700" !defaul
 
     .badge {
       background-color: #fff;
-      color: $navbar-default-bg;
+      color: @navbar-default-bg;
     }
   }
 
@@ -21,12 +20,12 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Ubuntu:400,700" !defaul
 
     .badge {
       background-color: #fff;
-      color: $navbar-inverse-bg;
+      color: @navbar-inverse-bg;
     }
   }
 }
 
-@media (max-width: $grid-float-breakpoint-max) {
+@media (max-width: @grid-float-breakpoint-max) {
 
   .navbar {
 
