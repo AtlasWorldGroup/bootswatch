@@ -24,18 +24,19 @@ var Paths = {
   LESS_TK              : 'less/toolkit.less',
   DIST                 : 'dist/datetime/css',
   DISTJS               : 'dist/datetime/js',
-  JS                   : 'js/*.js',
+  DTJS                 : 'js/bootstrap.datetimepicker.js',
+  MOMENT               : 'js/moment.js',
   THEMES               : [
                           'atlas'
                         ]
 }
 
 var themeName = argv.t;
-var theme = themeName + "/";
+var theme = './' + themeName + "/";
 
-gulp.task('default', ['clean-build','less-tk-min','less-dt-min','js-min'])
+gulp.task('default', ['clean-build','less-tk-min','less-dt-min','js-moment-min'])
 
-/* TODO: Check to make sure the theme is valid and exists */
+/* TODO: Check to make sure the theme is valid and exists (possibly using Paths.THEMES?) */
 gulp.task('validation', function () {
   return true;
 })
@@ -120,14 +121,31 @@ gulp.task('less-dt-min', ['less-dt'], function () {
 
 /* Copy the datetime javascript to the dist folder */
 gulp.task('js', function () {
-  return gulp.src(theme + Paths.JS)
-    .pipe(concat('bootstrap.datetimepicker.js'))
+  return gulp.src(theme + Paths.DTJS)
     .pipe(gulp.dest(theme + Paths.DISTJS))
 })
 
 /* Minify the datetime javascript */
 gulp.task('js-min', ['js'], function () {
-  return gulp.src(theme + Paths.JS)
+  return gulp.src(theme + Paths.DTJS)
+    .pipe(uglify())
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest(theme + Paths.DISTJS))
+})
+
+/* Copy Moment.js */
+gulp.task('js-moment', ['js-min'], function () {
+  console.log("getting: " + theme + Paths.MOMENT);
+  console.log("putting: " + theme + Paths.DISTJS);
+  return gulp.src(theme + Paths.MOMENT)
+  .pipe(gulp.dest(theme + Paths.DISTJS))
+})
+
+/* Minify the moment javascript */
+gulp.task('js-moment-min', ['js-moment'], function () {
+  return gulp.src(theme + Paths.MOMENT)
     .pipe(uglify())
     .pipe(rename({
       suffix: '.min'
