@@ -8,6 +8,7 @@ var rename       = require('gulp-rename')
 var concat       = require('gulp-concat')
 var uglify       = require('gulp-uglify')
 var clean        = require('gulp-clean')
+var replace      = require('gulp-replace')
 var argv         = require('yargs').argv;
 
 /* Paths variables */
@@ -34,7 +35,7 @@ var Paths = {
 var themeName = argv.t;
 var theme = './' + themeName + "/";
 
-gulp.task('default', ['clean-build','less-tk-min','less-dt-min','js-moment-min'])
+gulp.task('default', ['clean-tmp','less-tk-min','less-dt-min','js-moment-min'])
 
 /* TODO: Check to make sure the theme is valid and exists (possibly using Paths.THEMES?) */
 gulp.task('validation', function () {
@@ -53,7 +54,7 @@ gulp.task('less', ['copy-build'], function () {
     .pipe(less())
     .pipe(autoprefixer())
     .pipe(rename(Paths.DIST_BS_CSS))
-    .pipe(gulp.dest(theme + Paths.DIST_BS))
+    .pipe(gulp.dest(theme + Paths.DIST_BS + "/tmp"))
 })
 
 /* Create a minified version of the bootstrap.css */
@@ -66,12 +67,31 @@ gulp.task('less-min', ['less'], function () {
       basename: 'bootstrap',
       suffix: '.min'
     }))
+    .pipe(gulp.dest(theme + Paths.DIST_BS + "/tmp"))
+})
+
+/* change any http:// to https:// */
+gulp.task('https', ['less-min'], function () {
+  return gulp.src([theme + Paths.DIST_BS + "/tmp/bootstrap.css"])
+    .pipe(replace('http:', 'https:'))
+    .pipe(gulp.dest(theme + Paths.DIST_BS))
+})
+
+gulp.task('https-min', ['https'], function () {
+  return gulp.src([theme + Paths.DIST_BS + '/tmp/bootstrap.min.css'])
+    .pipe(replace('http:', 'https:'))
     .pipe(gulp.dest(theme + Paths.DIST_BS))
 })
 
 /* Remove the build.less file from the theme root */
-gulp.task('clean-build', ['less-min'], function () {
-  return gulp.src(theme + "*.less")
+gulp.task('clean-build', ['https-min'], function () {
+  return gulp.src(theme + '*.less')
+		.pipe(clean())
+})
+
+/* Remove tmp */
+gulp.task('clean-tmp', ['clean-build'], function () {
+  return gulp.src(theme + Paths.DIST_BS + '/tmp')
 		.pipe(clean())
 })
 
@@ -137,8 +157,6 @@ gulp.task('js-min', ['js'], function () {
 
 /* Copy Moment.js */
 gulp.task('js-moment', ['js-min'], function () {
-  console.log("getting: " + theme + Paths.MOMENT);
-  console.log("putting: " + theme + Paths.DISTJS);
   return gulp.src(theme + Paths.MOMENT)
   .pipe(gulp.dest(theme + Paths.DISTJS))
 })
