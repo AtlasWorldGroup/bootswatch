@@ -46,6 +46,10 @@ select option[default="true"] {
   background-color: #D9230F;
   border-color: #D9230F;
 }
+/* DateTime readonly styles */
+.form-control[data-disable-touch-keyboard] {
+  background-color: #fff !important;
+}
 .top {
   position: fixed;
   top: 0px;
