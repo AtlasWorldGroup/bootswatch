@@ -11,6 +11,11 @@ body {
 @-ms-viewport {
   width: auto !important;
 }
+/* Fix iOS9 Safari bug that cause modals to zoom */
+body.modal-open {
+  padding-right: 0px !important;
+  overflow-y: auto;
+}
 /* Footer */
 footer {
   padding-top: 25px;
@@ -49,6 +54,7 @@ select option[default="true"] {
 /* DateTime readonly styles */
 .form-control[data-disable-touch-keyboard] {
   background-color: #fff !important;
+  cursor: text !important;
 }
 .top {
   position: fixed;
@@ -383,9 +389,6 @@ select option[default="true"] {
 }
 /* End Modal Extras */
 /* Custom Controls */
-.form-control {
-  box-shadow: none;
-}
 .form-control:focus {
   border-color: #005a9c;
   outline: 0;
@@ -533,15 +536,6 @@ select option[default="true"] {
 .checkbox-inline label {
   margin-bottom: 0;
   cursor: pointer;
-}
-.form-control {
-  -webkit-transition: none;
-  transition: none;
-}
-.form-control:focus {
-  color: #000;
-  background-color: #fff;
-  box-shadow: none;
 }
 /* End Custom Controls */
 /* Beautiful Checkbox Buttons */
