@@ -66,6 +66,13 @@ select option[default="true"] {
 .form-control[data-disable-touch-keyboard] {
   background-color: @input-bg !important;
   cursor: text !important;
+  opacity: 1;
+}
+
+.form-control[data-disable-touch-keyboard][disabled] {
+  background-color: @input-bg-disabled !important;
+  cursor: @cursor-disabled !important;
+  opacity: 1;
 }
 
 .top {
@@ -1425,5 +1432,103 @@ a:focus .right-caret:after {
 
   to {
     -webkit-transform: rotate(360deg);
+  }
+}
+
+/* Pagination for GridViews (https://sufiawan.wordpress.com/2014/09/26/asp-net-use-bootstrap-pagination-on-gridview/) */
+.gv-pagination {
+    padding-left: 0;
+    margin: @line-height-computed 0;
+    border-radius: @border-radius-base;
+}
+
+.gv-pagination table > tbody > tr > td {
+    display: inline;
+    padding: 0px;
+}
+
+.gv-pagination table > tbody > tr > td > a {
+    position: relative;
+    float: left;
+    padding: @padding-base-vertical @padding-base-horizontal;
+    line-height: @line-height-base;
+    text-decoration: none;
+    color: @pagination-color;
+    background-color: @pagination-bg;
+    border: 1px solid @pagination-border;
+    margin-left: -1px;
+}
+
+.gv-pagination table > tbody > tr > td > span {
+    z-index: 2;
+    cursor: default;
+}
+
+.gv-pagination table > tbody > tr > td:first-child > a,
+.gv-pagination table > tbody > tr > td:first-child > span {
+    margin-left: 0;
+    border-bottom-left-radius: @border-radius-base;
+    border-top-left-radius: @border-radius-base;
+}
+
+.gv-pagination table > tbody > tr > td:last-child > a,
+.gv-pagination table > tbody > tr > td:last-child > span {
+    border-bottom-right-radius: @border-radius-base;
+    border-top-right-radius: @border-radius-base;
+}
+
+.gv-pagination table > tbody > tr > td > a:hover,
+.gv-pagination table > tbody > tr > td > a:focus {
+    color: @pagination-hover-color;
+    background-color: @pagination-hover-bg;
+    border-color: @pagination-hover-border;
+    cursor: pointer;
+}
+
+/* span is same as active */
+.gv-pagination table > tbody > tr > td > span {
+    position: relative;
+    float: left;
+    padding: @padding-base-vertical @padding-base-horizontal;
+    line-height: @line-height-base;
+    text-decoration: none;
+    color: @pagination-active-color;
+    background-color: @pagination-active-bg;
+    border: 1px solid @pagination-active-bg;
+    margin-left: -1px;
+}
+
+.gv-pagination table > tbody > tr > td > span:hover,
+.gv-pagination table > tbody > tr > td > span:focus {
+    color: @pagination-active-color;
+    background-color: @pagination-active-bg;
+    border-color: @pagination-active-bg;
+    cursor: pointer;
+}
+.pager-right {
+  float: none;
+  margin: auto;
+}
+
+.pager-count {
+  float: none;
+  margin: auto;
+}
+.pager-count p {
+  line-height: @line-height-base;
+  padding: @padding-base-vertical 0;
+  margin: 0 !important;
+}
+
+@media (min-width: 769px) {
+  .pager-right {
+    float: right;
+    display: inline-block;
+    margin: 0;
+  }
+  .pager-count {
+    float: left;
+    display: inline-block;
+    margin: 0;
   }
 }

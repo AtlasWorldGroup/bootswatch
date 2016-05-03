@@ -10,6 +10,8 @@ var uglify       = require('gulp-uglify')
 var clean        = require('gulp-clean')
 var replace      = require('gulp-replace')
 var argv         = require('yargs').argv;
+var expect       = require('gulp-expect-file');
+var fileExists   = require('file-exists');
 
 /* Paths variables */
 var Paths = {
@@ -28,7 +30,19 @@ var Paths = {
   DTJS                 : 'js/bootstrap.datetimepicker.js',
   MOMENT               : 'js/moment.js',
   THEMES               : [
-                          'atlas'
+                          'atlas',
+                          'sai',
+                          'sal',
+                          'sam',
+                          'sbd',
+                          'scn',
+                          'scr',
+                          'sef',
+                          'sev',
+                          'sri',
+                          'ssm',
+                          'svc',
+                          'szz'
                         ]
 }
 
@@ -175,4 +189,37 @@ gulp.task('js-moment-min', ['js-moment'], function () {
 gulp.task('add-theme', function () {
   return gulp.src(Paths.TEMPLATE + "/**/*")
     .pipe(gulp.dest(Paths.HERE + theme))
+})
+
+/* Update themes global (excluding variables.less) */
+gulp.task('update-themes', function () {
+  var update = argv.v;
+  var updateVariables = false;
+  console.log('updating theme templates \nNOTE: if the theme does not contain a variables.less, it will not be updated');
+  if (update) {
+    updateVariables = true;
+    console.log('also updating variables.less');
+  }
+  var done = false;
+  for (var i = 0; i < Paths.THEMES.length; i++) {
+    var current = Paths.THEMES[i];
+    /* Only update if the theme has a variables.less */
+    var exists = fileExists(Paths.HERE + current + '/less/variables.less');
+    if (exists) {
+      console.log("Updating: " + current)
+      if (updateVariables) {
+        gulp.src(Paths.TEMPLATE + '/**/*')
+          .pipe(gulp.dest(Paths.HERE + current))
+      }
+      else {
+        gulp.src([Paths.TEMPLATE + '/**/*', '!' + Paths.TEMPLATE + '/less/variables.less'])
+          .pipe(gulp.dest(Paths.HERE + current))
+      }
+    }
+    else {
+      console.log(current + " does not exist");
+    }
+    done = true;
+  }
+  return done;
 })
