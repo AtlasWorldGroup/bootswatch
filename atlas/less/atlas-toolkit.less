@@ -32,34 +32,167 @@ select option[default="true"] {
   color: #808080;
 }
 /* input-group-addon colors */
+.disabled {
+  cursor: @cursor-disabled !important;
+}
+
 .input-group-addon.primary {
   color: @btn-primary-color;
   background-color: @btn-primary-bg;
   border-color: @btn-primary-border;
+  &.disabled {
+    cursor: @cursor-disabled;
+    .opacity(.65);
+    .box-shadow(none);
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: @btn-primary-bg;
+      border-color: @btn-primary-border;
+    }
+  }
+  &:focus {
+    color: @btn-primary-color;
+    background-color: darken(@btn-primary-bg, 10%);
+        border-color: darken(@btn-primary-border, 25%);
+  }
+  &:hover {
+    color: @btn-primary-color;
+    background-color: darken(@btn-primary-bg, 10%);
+        border-color: darken(@btn-primary-border, 12%);
+  }
+  &:active {
+    color: @btn-primary-color;
+    background-color: darken(@btn-primary-bg, 10%);
+        border-color: darken(@btn-primary-border, 12%);
+  }
 }
-
 .input-group-addon.success {
   color: @btn-success-color;
   background-color: @btn-success-bg;
   border-color: @btn-success-border;
+  &.disabled {
+    cursor: @cursor-disabled;
+    .opacity(.65);
+    .box-shadow(none);
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: @btn-success-bg;
+      border-color: @btn-success-border;
+    }
+  }
+  &:focus {
+    color: @btn-success-color;
+    background-color: darken(@btn-success-bg, 10%);
+        border-color: darken(@btn-success-border, 25%);
+  }
+  &:hover {
+    color: @btn-success-color;
+    background-color: darken(@btn-success-bg, 10%);
+        border-color: darken(@btn-success-border, 12%);
+  }
+  &:active {
+    color: @btn-success-color;
+    background-color: darken(@btn-success-bg, 10%);
+        border-color: darken(@btn-success-border, 12%);
+  }
 }
 
 .input-group-addon.info {
   color: @btn-info-color;
   background-color: @btn-info-bg;
   border-color: @btn-info-border;
+  &.disabled {
+    cursor: @cursor-disabled;
+    .opacity(.65);
+    .box-shadow(none);
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: @btn-info-bg;
+      border-color: @btn-info-border;
+    }
+  }
+  &:focus {
+    color: @btn-info-color;
+    background-color: darken(@btn-info-bg, 10%);
+        border-color: darken(@btn-info-border, 25%);
+  }
+  &:hover {
+    color: @btn-info-color;
+    background-color: darken(@btn-info-bg, 10%);
+        border-color: darken(@btn-info-border, 12%);
+  }
+  &:active {
+    color: @btn-info-color;
+    background-color: darken(@btn-info-bg, 10%);
+        border-color: darken(@btn-info-border, 12%);
+  }
 }
 
 .input-group-addon.warning {
   color: @btn-warning-color;
   background-color: @btn-warning-bg;
   border-color: @btn-warning-border;
+  &.disabled {
+    cursor: @cursor-disabled;
+    .opacity(.65);
+    .box-shadow(none);
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: @btn-warning-bg;
+      border-color: @btn-warning-border;
+    }
+  }
+  &:focus {
+    color: @btn-warning-color;
+    background-color: darken(@btn-warning-bg, 10%);
+        border-color: darken(@btn-warning-border, 25%);
+  }
+  &:hover {
+    color: @btn-warning-color;
+    background-color: darken(@btn-warning-bg, 10%);
+        border-color: darken(@btn-warning-border, 12%);
+  }
+  &:active {
+    color: @btn-warning-color;
+    background-color: darken(@btn-warning-bg, 10%);
+        border-color: darken(@btn-warning-border, 12%);
+  }
 }
 
 .input-group-addon.danger {
   color: @btn-danger-color;
   background-color: @btn-danger-bg;
   border-color: @btn-danger-border;
+  &.disabled {
+    cursor: @cursor-disabled;
+    .opacity(.65);
+    .box-shadow(none);
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: @btn-danger-bg;
+      border-color: @btn-danger-border;
+    }
+  }
+  &:focus {
+    color: @btn-danger-color;
+    background-color: darken(@btn-danger-bg, 10%);
+        border-color: darken(@btn-danger-border, 25%);
+  }
+  &:hover {
+    color: @btn-danger-color;
+    background-color: darken(@btn-danger-bg, 10%);
+        border-color: darken(@btn-danger-border, 12%);
+  }
+  &:active {
+    color: @btn-danger-color;
+    background-color: darken(@btn-danger-bg, 10%);
+        border-color: darken(@btn-danger-border, 12%);
+  }
 }
 
 /* DateTime readonly styles */
