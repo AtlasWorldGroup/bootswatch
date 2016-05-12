@@ -14,7 +14,6 @@ body {
 /* Fix iOS9 Safari bug that cause modals to zoom */
 body.modal-open {
   padding-right: 0px !important;
-  overflow-y: auto;
 }
 /* Footer */
 footer {

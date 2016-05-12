@@ -193,7 +193,7 @@ gulp.task('add-theme', function () {
 
 /* Update themes global (excluding variables.less) */
 gulp.task('update-themes', function () {
-  var update = argv.v;
+  var update = argv.a;
   var updateVariables = false;
   console.log('updating theme templates \nNOTE: if the theme does not contain a variables.less, it will not be updated');
   if (update) {
